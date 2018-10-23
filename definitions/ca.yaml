@@ -39,6 +39,13 @@ months:
     week: 2
     year_ranges:
     - after: 2013
+    - before: 2019
+  - name: Family Day
+    regions: [ca_bc]
+    wday: 1
+    week: 3
+    year_ranges:
+    - after: 2019
   - name: Louis Riel Day
     regions: [ca_mb]
     wday: 1
