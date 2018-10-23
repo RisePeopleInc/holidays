@@ -37,8 +37,8 @@ months:
     regions: [ca_bc]
     wday: 1
     week: 2
-    year_ranges:    
-    - before: 2019
+    year_ranges:
+    - between: 2013..2018
   - name: Family Day
     regions: [ca_bc]
     wday: 1
