@@ -13,11 +13,7 @@ module Holidays
   # All the definitions are available at https://github.com/holidays/holidays
   module NORTH_AMERICA # :nodoc:
     def self.defined_regions
-      [ :ca, :ca_ab, :ca_sk, :ca_on, :ca_bc, :ca_mb, :ca_ns, :ca_pe, :ca_qc, :ca_nt, :ca_nu, :ca_nb, :ca_yk, :ca_nl, :mx, :mx_pue, :us, :us_aa, :us_ae,
-        :us_ak, :us_al, :us_ap, :us_ar, :us_as, :us_az, :us_ca, :us_co, :us_ct, :us_dc, :us_de, :us_fl, :us_ga, :us_gu, :us_hi, :us_ia, :us_id, :us_il,
-        :us_in, :us_ks, :us_ky, :us_la, :us_ma, :us_md, :us_me, :us_mi, :us_mn, :us_mo, :us_mp, :us_ms, :us_mt, :us_nc, :us_nd, :us_ne, :us_nh, :us_nj,
-        :us_nm, :us_nv, :us_ny, :us_oh, :us_ok, :us_or, :us_pa, :us_pr, :us_ri, :us_sc, :us_sd, :us_tn, :us_tx, :us_um, :us_ut, :us_va, :us_vi, :us_vt,
-        :us_wa, :us_wi, :us_wv, :us_wy ]
+      [:ca, :ca_ab, :ca_sk, :ca_on, :ca_bc, :ca_mb, :ca_ns, :ca_pe, :ca_qc, :ca_nt, :ca_nu, :ca_nb, :ca_yk, :ca_nl, :mx, :mx_pue, :us, :us_dc, :us_ca]
     end
 
     def self.holidays_by_month
@@ -34,7 +30,8 @@ module Holidays
       2 => [{:wday => 1, :week => 3,  :year_ranges => [{:after => 1990}],:name => "Family Day", :regions => [:ca_ab]},
             {:wday => 1, :week => 3,  :year_ranges => [{:after => 2007}],:name => "Family Day", :regions => [:ca_sk]},
             {:wday => 1, :week => 3,  :year_ranges => [{:after => 2008}],:name => "Family Day", :regions => [:ca_on]},
-            {:wday => 1, :week => 2,  :year_ranges => [{:after => 2013}],:name => "Family Day", :regions => [:ca_bc]},
+            {:wday => 1, :week => 2,  :year_ranges => [{:between => 2013..2018}],:name => "Family Day", :regions => [:ca_bc]},
+            {:wday => 1, :week => 3,  :year_ranges => [{:after => 2019}],:name => "Family Day", :regions => [:ca_bc]},
             {:wday => 1, :week => 3, :name => "Louis Riel Day", :regions => [:ca_mb]},
             {:wday => 1, :week => 3,  :year_ranges => [{:after => 2015}],:name => "Nova Scotia Heritage Day", :regions => [:ca_ns]},
             {:wday => 1, :week => 3, :name => "Islander Day", :regions => [:ca_pe]},
