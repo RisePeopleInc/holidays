@@ -13,7 +13,7 @@ module Holidays
   # All the definitions are available at https://github.com/holidays/holidays
   module NORTH_AMERICA # :nodoc:
     def self.defined_regions
-      [:ca, :ca_ab, :ca_sk, :ca_on, :ca_bc, :ca_mb, :ca_ns, :ca_pe, :ca_qc, :ca_nt, :ca_nu, :ca_nb, :ca_yk, :ca_nl, :mx, :mx_pue, :us, :us_dc, :us_ca]
+      [:ca, :ca_ab, :ca_sk, :ca_on, :ca_bc, :ca_mb, :ca_ns, :ca_pe, :ca_qc, :ca_nt, :ca_nu, :ca_nb, :ca_yk, :ca_yt, :ca_nl, :mx, :mx_pue, :us, :us_dc, :us_ca]
     end
 
     def self.holidays_by_month
@@ -60,7 +60,7 @@ module Holidays
             {:wday => 1, :week => 1, :name => "Saskatchewan Day", :regions => [:ca_sk]},
             {:wday => 1, :week => 1, :name => "Civic Holiday", :regions => [:ca_nt, :ca_nu]},
             {:wday => 1, :week => 1, :name => "New Brunswick Day", :regions => [:ca_nb]},
-            {:wday => 1, :week => 3, :name => "Discovery Day", :regions => [:ca_yk]}],
+            {:wday => 1, :week => 3, :name => "Discovery Day", :regions => [:ca_yk, :ca_yt]}],
       9 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:ca]},
             {:mday => 15, :name => "Grito de Dolores", :regions => [:mx]},
             {:mday => 16, :name => "Día de la Independencia", :regions => [:mx]},
@@ -69,7 +69,7 @@ module Holidays
             {:mday => 12, :type => :informal, :name => "Día de la Raza", :regions => [:mx]},
             {:wday => 1, :week => 2, :name => "Columbus Day", :regions => [:us]},
             {:mday => 31, :type => :informal, :name => "Halloween", :regions => [:us, :ca]}],
-      11 => [{:mday => 11, :name => "Remembrance Day", :regions => [:ca_ab, :ca_sk, :ca_bc, :ca_pe, :ca_nl, :ca_nt, :ca_nu, :ca_nb, :ca_yk]},
+      11 => [{:mday => 11, :name => "Remembrance Day", :regions => [:ca_ab, :ca_sk, :ca_bc, :ca_pe, :ca_nl, :ca_nt, :ca_nu, :ca_nb, :ca_yk, :ca_yt]},
             {:mday => 1, :type => :informal, :name => "Todos los Santos", :regions => [:mx]},
             {:mday => 2, :type => :informal, :name => "Los Fieles Difuntos", :regions => [:mx]},
             {:wday => 1, :week => 3, :name => "Día de la Revolución", :regions => [:mx]},

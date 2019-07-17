@@ -13,7 +13,7 @@ module Holidays
   # All the definitions are available at https://github.com/holidays/holidays
   module CA # :nodoc:
     def self.defined_regions
-      [:ca, :ca_ab, :ca_sk, :ca_on, :ca_bc, :ca_mb, :ca_ns, :ca_pe, :ca_qc, :ca_nt, :ca_nu, :ca_nb, :ca_yk, :ca_nl, :us]
+      [:ca, :ca_ab, :ca_sk, :ca_on, :ca_bc, :ca_mb, :ca_ns, :ca_pe, :ca_qc, :ca_nt, :ca_nu, :ca_nb, :ca_yk, :ca_yt, :ca_nl, :us]
     end
 
     def self.holidays_by_month
@@ -43,11 +43,11 @@ module Holidays
             {:wday => 1, :week => 1, :name => "Saskatchewan Day", :regions => [:ca_sk]},
             {:wday => 1, :week => 1, :name => "Civic Holiday", :regions => [:ca_nt, :ca_nu]},
             {:wday => 1, :week => 1, :name => "New Brunswick Day", :regions => [:ca_nb]},
-            {:wday => 1, :week => 3, :name => "Discovery Day", :regions => [:ca_yk]}],
+            {:wday => 1, :week => 3, :name => "Discovery Day", :regions => [:ca_yk, :ca_yt]}],
       9 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:ca]}],
       10 => [{:wday => 1, :week => 2, :name => "Thanksgiving", :regions => [:ca]},
             {:mday => 31, :type => :informal, :name => "Halloween", :regions => [:us, :ca]}],
-      11 => [{:mday => 11, :name => "Remembrance Day", :regions => [:ca_ab, :ca_sk, :ca_bc, :ca_pe, :ca_nl, :ca_nt, :ca_nu, :ca_nb, :ca_yk]}],
+      11 => [{:mday => 11, :name => "Remembrance Day", :regions => [:ca_ab, :ca_sk, :ca_bc, :ca_pe, :ca_nl, :ca_nt, :ca_nu, :ca_nb, :ca_yk, :ca_yt]}],
       12 => [{:mday => 25, :name => "Christmas Day", :regions => [:ca]},
             {:mday => 26, :name => "Boxing Day", :regions => [:ca_on]}],
       3 => [{:mday => 17, :type => :informal, :name => "St. Patrick's Day", :regions => [:us, :ca]}],

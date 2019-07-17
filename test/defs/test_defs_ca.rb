@@ -77,11 +77,18 @@ end
   assert_equal [], Holidays.on(date, :ca_on)
 end
 
-# Family Day in BC - Should only be active on 2013 or later
+# Family Day in BC - Should only be active on 2013 to 2018
 [
   Date.civil(2013,2,11),
   Date.civil(2014,2,10),
-  Date.civil(2044,2,8),
+].each do |date|
+  assert_equal 'Family Day', Holidays.on(date, :ca_bc)[0][:name]
+end
+
+
+# Family Day in BC - Should only be active on 2019 or later
+[
+  Date.civil(2044,2,15),
 ].each do |date|
   assert_equal 'Family Day', Holidays.on(date, :ca_bc)[0][:name]
 end
@@ -148,7 +155,8 @@ end
   :ca_nt,
   :ca_nu,
   :ca_nb,
-  :ca_yk
+  :ca_yk,
+  :ca_yt
 ].each do |province|
   assert_equal "Remembrance Day", Holidays.on(Date.civil(2016,11,11), province)[0][:name]
 end
