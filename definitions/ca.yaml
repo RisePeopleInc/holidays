@@ -13,6 +13,7 @@ months:
   - name: Easter Monday
     regions: [ca]
     function: easter(year)
+    function_modifier: 1
   1:
   - name: New Year's Day
     regions: [ca]
@@ -86,7 +87,8 @@ months:
     mday: 21
   - name: Discovery Day
     regions: [ca_nl]
-    wday: 21
+    wday: 1
+    week: 4
   7:
   - name: Canada Day
     regions: [ca]
