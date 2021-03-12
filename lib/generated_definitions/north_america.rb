@@ -37,7 +37,7 @@ module Holidays
             {:wday => 1, :week => 3, :name => "Louis Riel Day", :regions => [:ca_mb]},
             {:wday => 1, :week => 3,  :year_ranges => [{:after => 2015}],:name => "Nova Scotia Heritage Day", :regions => [:ca_ns]},
             {:wday => 1, :week => 3, :name => "Islander Day", :regions => [:ca_pe]},
-            {:wday => 5, :week => 4, :name => "Yukon Heritage Day", :regions => [:ca_yt]},
+            {:wday => 5, :week => 4, :name => "Heritage Day", :regions => [:ca_yt]},
             {:wday => 1, :week => 1, :name => "Día de la Constitución", :regions => [:mx]},
             {:wday => 1, :week => 3, :name => "Presidents' Day", :regions => [:us]},
             {:mday => 2, :type => :informal, :name => "Groundhog Day", :regions => [:us, :ca]},
@@ -54,7 +54,7 @@ module Holidays
             {:wday => 6, :week => 3, :type => :informal, :name => "Armed Forces Day", :regions => [:us]}],
       6 => [{:mday => 24, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Fête Nationale", :regions => [:ca_qc]},
             {:mday => 21, :name => "National Aboriginal Day", :regions => [:ca_nt]},
-            {:wday => 1, :week => 4, :name => "Discovery Day", :regions => [:ca_nl]},
+            {:function => "ca_nl_discovery_day(year)", :function_arguments => [:year], :name => "Discovery Day", :regions => [:ca_nl]},
             {:wday => 0, :week => 3, :type => :informal, :name => "Día del Padre", :regions => [:mx]},
             {:wday => 0, :week => 3, :type => :informal, :name => "Father's Day", :regions => [:us, :ca]}],
       7 => [{:mday => 1, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Canada Day", :regions => [:ca]},
@@ -104,6 +104,16 @@ if date.wday > 1
   date -= (date.wday - 1)
 elsif date.wday == 0
   date -= 6
+end
+date
+},
+
+"ca_nl_discovery_day(year)" => Proc.new { |year|
+date = Date.civil(year,6,24)
+if date.wday <= 4
+  date -= (date.wday - 1)
+else
+  date += (8 - date.wday)
 end
 date
 },

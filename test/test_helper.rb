@@ -1,4 +1,4 @@
-require 'coverage_report'
+# require 'coverage_report'
 
 $:.unshift(File.expand_path(File.dirname(__FILE__) + '../../lib/'))
 
