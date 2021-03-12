@@ -7,22 +7,63 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class CaDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_ca
-{Date.civil(2008,1,1) => 'New Year\'s Day',
- Date.civil(2008,3,21) => 'Good Friday',
- Date.civil(2008,5,19) => 'Victoria Day',
- Date.civil(2008,7,1) => 'Canada Day',
- Date.civil(2008,9,1) => 'Labour Day',
- Date.civil(2008,10,13) => 'Thanksgiving',
- Date.civil(2008,12,25) => 'Christmas Day'}.each do |date, name|
+{
+  Date.civil(2008, 1, 1) => 'New Year\'s Day',
+  Date.civil(2021, 1, 1) => 'New Year\'s Day',
+  Date.civil(2008, 3, 21) => 'Good Friday',
+  Date.civil(2021, 4, 2) => 'Good Friday',
+  Date.civil(2021, 4, 5) => 'Easter Monday',
+  Date.civil(2022, 4, 18) => 'Easter Monday',
+  Date.civil(2008, 5, 19) => 'Victoria Day',
+  Date.civil(2021, 5, 24) => 'Victoria Day',
+  Date.civil(2008, 7, 1) => 'Canada Day',
+  Date.civil(2021, 7, 1) => 'Canada Day',
+  Date.civil(2008, 9, 1) => 'Labour Day',
+  Date.civil(2021, 9, 6) => 'Labour Day',
+  Date.civil(2008, 10, 13) => 'Thanksgiving',
+  Date.civil(2021, 10, 11) => 'Thanksgiving',
+  Date.civil(2008, 12, 25) => 'Christmas Day',
+  Date.civil(2021, 12, 25) => 'Christmas Day'
+ }.each do |date, name|
   assert_equal name, (Holidays.on(date, :ca)[0] || {})[:name]
+end
+
+# Bank Holiday in Quebec
+[
+  Date.civil(2021, 1, 2),
+  Date.civil(2022, 1, 2),
+  Date.civil(2023, 1, 2),
+  Date.civil(2024, 1, 2)
+].each do |date|
+  assert_equal 'Bank Holiday', Holidays.on(date, :ca_qc)[0][:name]
+end
+
+# Heritage Day in Yukon
+[
+  Date.civil(2021, 2, 26),
+  Date.civil(2022, 2, 25),
+  Date.civil(2023, 2, 24),
+  Date.civil(2024, 2, 23)
+].each do |date|
+  assert_equal 'Heritage Day', Holidays.on(date, :ca_yt)[0][:name]
+end
+
+# Discovery Day in Newfoundland and Labrador
+[
+  Date.civil(2021, 6, 21),
+  Date.civil(2022, 6, 27),
+  Date.civil(2023, 6, 26),
+  Date.civil(2024, 6, 24)
+].each do |date|
+  assert_equal 'Discovery Day', Holidays.on(date, :ca_nl)[0][:name]
 end
 
 # Family Day in Alberta - Should only be active on 1990 or later
 [
-  Date.civil(1990,2,19),
-  Date.civil(2013,2,18),
-  Date.civil(2014,2,17),
-  Date.civil(2044,2,15),
+  Date.civil(1990, 2, 19),
+  Date.civil(2013, 2, 18),
+  Date.civil(2014, 2, 17),
+  Date.civil(2044, 2, 15),
 ].each do |date|
   assert_equal 'Family Day', Holidays.on(date, :ca_ab)[0][:name]
 end
@@ -135,28 +176,36 @@ end
 
 # First Monday in August
 [Date.civil(2013,8,5), Date.civil(2014,8,4), Date.civil(2015,8,3)].each do |date|
-  { :ca_bc => 'BC Day',
-    :ca_sk => 'Saskatchewan Day',
-    :ca_nt => 'Civic Holiday',
-    :ca_nu => 'Civic Holiday',
-    :ca_nb => 'New Brunswick Day' }.each do |region, name|
+  { ca_bc: 'BC Day',
+      ca_sk: 'Saskatchewan Day',
+      ca_nt: 'Civic Holiday',
+      ca_nu: 'Civic Holiday',
+      ca_pe: 'Civic Holiday',
+      ca_on: 'Civic Holiday',
+      ca_ns: 'Civic Holiday',
+      ca_mb: 'Civic Holiday',
+      ca_ab: 'Civic Holiday',
+      ca_nb: 'New Brunswick Day' }.each do |region, name|
     assert_equal name, Holidays.on(date, region)[0][:name]
   end
 end
 
 # Remembrance Day in all Canadian provinces
-# except (Nova Scotia, Manitoba, Ontario, and Quebec)
-[
-  :ca_ab,
-  :ca_sk,
-  :ca_bc,
-  :ca_pe,
-  :ca_nl,
-  :ca_nt,
-  :ca_nu,
-  :ca_nb,
-  :ca_yk,
-  :ca_yt
+# except (Quebec)
+%i[
+  ca_ab
+  ca_sk
+  ca_bc
+  ca_pe
+  ca_nl
+  ca_nt
+  ca_nu
+  ca_nb
+  ca_yk
+  ca_yt
+  ca_ns
+  ca_mb
+  ca_on
 ].each do |province|
   assert_equal "Remembrance Day", Holidays.on(Date.civil(2016,11,11), province)[0][:name]
 end
