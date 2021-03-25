@@ -1,5 +1,5 @@
 # Canadian holiday definitions for the Ruby Holiday gem.
-# Updated 2021-03-11.
+# Updated 2021-03-25.
 #
 # Notes:
 #  - 'Family Day' in various provinces are only celebrated after certain years: http://www.timeanddate.com/holidays/canada/family-day
@@ -10,10 +10,6 @@ months:
       regions: [ca]
       function: easter(year)
       function_modifier: -2
-    - name: Easter Monday
-      regions: [ca]
-      function: easter(year)
-      function_modifier: 1
   1:
     - name: New Year's Day
       regions: [ca]
@@ -151,7 +147,7 @@ months:
       regions: [ca]
       mday: 25
     - name: Boxing Day
-      regions: [ca]
+      regions: [ca_on]
       mday: 26
 methods:
   ca_victoria_day:
@@ -182,8 +178,6 @@ tests: |
     Date.civil(2021, 1, 1) => 'New Year\'s Day',
     Date.civil(2008, 3, 21) => 'Good Friday',
     Date.civil(2021, 4, 2) => 'Good Friday',
-    Date.civil(2021, 4, 5) => 'Easter Monday',
-    Date.civil(2022, 4, 18) => 'Easter Monday',
     Date.civil(2008, 5, 19) => 'Victoria Day',
     Date.civil(2021, 5, 24) => 'Victoria Day',
     Date.civil(2008, 7, 1) => 'Canada Day',
