@@ -172,3 +172,12 @@ See our [contribution guidelines](CONTRIBUTING.md) for information on how to hel
 * Maintained by [Phil Trimble](https://github.com/ptrimble), 2014-present
 
 Plus all of these [wonderful contributors!](https://github.com/holidays/holidays/contributors)
+
+### Release Ruby Package
+
+* Before updating a gem, you need to have a github token i your ~/.gemrc and to setup a token. please read https://risepeople.atlassian.net/wiki/spaces/RD/pages/813432834/Using+Github+Packages+for+our+Ruby+Gems#Updating-and-Creating-a-GitHub-Package-%5BRuby%5D
+* Update version ./lib/holidays/version.rb (from 4.9.0 to 4.9.1)
+* create a pull requeset on Github and squash and merge into master (RisePeopleInc).
+* git pull on your local machine to get the changes on your master branch
+* build the gem `gem build holidays.gemspec`
+* push to github package `gem push --key github --host https://rubygems.pkg.github.com/RisePeopleInc holidays-4.9.1.gem`
