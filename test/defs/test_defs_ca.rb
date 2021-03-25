@@ -12,8 +12,6 @@ class CaDefinitionTests < Test::Unit::TestCase  # :nodoc:
   Date.civil(2021, 1, 1) => 'New Year\'s Day',
   Date.civil(2008, 3, 21) => 'Good Friday',
   Date.civil(2021, 4, 2) => 'Good Friday',
-  Date.civil(2021, 4, 5) => 'Easter Monday',
-  Date.civil(2022, 4, 18) => 'Easter Monday',
   Date.civil(2008, 5, 19) => 'Victoria Day',
   Date.civil(2021, 5, 24) => 'Victoria Day',
   Date.civil(2008, 7, 1) => 'Canada Day',

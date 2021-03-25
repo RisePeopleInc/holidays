@@ -1,4 +1,18 @@
 # Ruby Holidays Gem CHANGELOG
+## 4.8.1
+
+* Remove Easter Monday.
+* Modify Boxing Day only for ON.
+
+## 4.8.0
+
+* Add Easter Monday as a Federal Holiday.
+* Add Heritage Day in YT.
+* Add Discovery Day in NL.
+* Add Civic Holiday in PE, ON, NS, MB and AB.
+* Add Rememberance Day in NS, MB and ON.
+* Add Boxing Day as a Federal Holiday.
+* Add Discovery Day Function
 
 ## 4.6.0
 
