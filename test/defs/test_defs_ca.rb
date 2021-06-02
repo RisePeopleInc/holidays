@@ -203,7 +203,6 @@ end
   ca_yt
   ca_ns
   ca_mb
-  ca_on
 ].each do |province|
   assert_equal "Remembrance Day", Holidays.on(Date.civil(2016,11,11), province)[0][:name]
 end
