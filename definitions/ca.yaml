@@ -137,9 +137,6 @@ months:
           ca_nb,
           ca_yk,
           ca_yt,
-          ca_ns,
-          ca_mb,
-          ca_on,
         ]
       mday: 11
   12:
