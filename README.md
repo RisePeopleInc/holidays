@@ -173,6 +173,16 @@ See our [contribution guidelines](CONTRIBUTING.md) for information on how to hel
 
 Plus all of these [wonderful contributors!](https://github.com/holidays/holidays/contributors)
 
+### Running Tests
+
+Before submitting a PR, run tests on the following changes:
+
+```bash
+$ make setup
+$ REGION=ca make test_region 
+$ make generate
+```
+
 ### Release Ruby Package
 
 * Before updating a gem, you need to have a github token i your ~/.gemrc and to setup a token. please read https://risepeople.atlassian.net/wiki/spaces/RD/pages/813432834/Using+Github+Packages+for+our+Ruby+Gems#Updating-and-Creating-a-GitHub-Package-%5BRuby%5D
