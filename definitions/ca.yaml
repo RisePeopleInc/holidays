@@ -103,7 +103,7 @@ months:
       wday: 1
     - name: Civic Holiday
       week: 1
-      regions: [ca_nt, ca_nu, ca_pe, ca_on, ca_ns, ca_mb, ca_ab]
+      regions: [ca_nt, ca_nu, ca_pe, ca_ns, ca_mb, ca_ab]
       wday: 1
     - name: New Brunswick Day
       week: 1
