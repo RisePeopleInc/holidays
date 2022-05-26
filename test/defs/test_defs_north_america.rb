@@ -12,8 +12,6 @@ class North_americaDefinitionTests < Test::Unit::TestCase  # :nodoc:
   Date.civil(2021, 1, 1) => 'New Year\'s Day',
   Date.civil(2008, 3, 21) => 'Good Friday',
   Date.civil(2021, 4, 2) => 'Good Friday',
-  Date.civil(2008, 5, 19) => 'Victoria Day',
-  Date.civil(2021, 5, 24) => 'Victoria Day',
   Date.civil(2008, 7, 1) => 'Canada Day',
   Date.civil(2021, 7, 1) => 'Canada Day',
   Date.civil(2008, 9, 1) => 'Labour Day',
@@ -166,10 +164,26 @@ end
   assert_equal 'Islander Day', Holidays.on(date, :ca_pe)[0][:name]
 end
 
-# Victoria Day
-[Date.civil(2004,5,24), Date.civil(2005,5,23), Date.civil(2006,5,22),
- Date.civil(2007,5,21), Date.civil(2008,5,19)].each do |date|
-  assert_equal 'Victoria Day', Holidays.on(date, :ca)[0][:name]
+# Victoria Day in all Canadian provinces
+# except (QC)
+%i[
+  ca_ab
+  ca_sk
+  ca_on
+  ca_bc
+  ca_mb
+  ca_ns
+  ca_pe
+  ca_yt
+  ca_nt
+  ca_nl
+  ca_nu
+  ca_nb
+  ca_yk
+].each do |province|
+  assert_equal "Victoria Day", Holidays.on(Date.civil(2008, 5, 19) , province)[0][:name]
+  assert_equal "Victoria Day", Holidays.on(Date.civil(2021, 5, 24) , province)[0][:name]
+  assert_equal "Victoria Day", Holidays.on(Date.civil(2023, 5, 22) , province)[0][:name]
 end
 
 # First Monday in August
@@ -179,7 +193,6 @@ end
       ca_nt: 'Civic Holiday',
       ca_nu: 'Civic Holiday',
       ca_pe: 'Civic Holiday',
-      ca_on: 'Civic Holiday',
       ca_ns: 'Civic Holiday',
       ca_mb: 'Civic Holiday',
       ca_ab: 'Civic Holiday',
@@ -189,7 +202,7 @@ end
 end
 
 # Remembrance Day in all Canadian provinces
-# except (Quebec)
+# except (QC, NS, MB, ON)
 %i[
   ca_ab
   ca_sk
@@ -201,9 +214,6 @@ end
   ca_nb
   ca_yk
   ca_yt
-  ca_ns
-  ca_mb
-  ca_on
 ].each do |province|
   assert_equal "Remembrance Day", Holidays.on(Date.civil(2016,11,11), province)[0][:name]
 end
