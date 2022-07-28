@@ -10,6 +10,7 @@ class North_americaDefinitionTests < Test::Unit::TestCase  # :nodoc:
 {
   Date.civil(2008, 1, 1) => 'New Year\'s Day',
   Date.civil(2021, 1, 1) => 'New Year\'s Day',
+  Date.civil(2022, 1, 1) => 'New Year\'s Day',
   Date.civil(2008, 3, 21) => 'Good Friday',
   Date.civil(2021, 4, 2) => 'Good Friday',
   Date.civil(2008, 7, 1) => 'Canada Day',
@@ -59,6 +60,7 @@ end
   Date.civil(1990, 2, 19),
   Date.civil(2013, 2, 18),
   Date.civil(2014, 2, 17),
+  Date.civil(2022, 2, 21),
   Date.civil(2044, 2, 15),
 ].each do |date|
   assert_equal 'Family Day', Holidays.on(date, :ca_ab)[0][:name]
@@ -117,6 +119,7 @@ end
 # Family Day in BC - Should only be active on 2013 to 2018
 [
   Date.civil(2013,2,11),
+  Date.civil(2022,2,21),
   Date.civil(2014,2,10),
 ].each do |date|
   assert_equal 'Family Day', Holidays.on(date, :ca_bc)[0][:name]
