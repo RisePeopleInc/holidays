@@ -93,7 +93,7 @@ end
   Date.civil(2014,2,17),
   Date.civil(2022,2,21),
   Date.civil(2023,2,20),
-  Date.civil(2044,2,15),
+  Date.civil(2044,2,15)
 ].each do |date|
   assert_equal 'Family Day', Holidays.on(date, :ca_sk)[0][:name]
 end
@@ -144,7 +144,7 @@ end
 [
   Date.civil(2022,2,21),
   Date.civil(2023,2,20),
-  Date.civil(2044,2,15),
+  Date.civil(2044,2,15)
 ].each do |date|
   assert_equal 'Family Day', Holidays.on(date, :ca_bc)[0][:name]
 end
@@ -153,7 +153,7 @@ end
 [
   Date.civil(2000,2,14),
   Date.civil(2011,2,14),
-  Date.civil(2012,2,13),
+  Date.civil(2012,2,13)
 ].each do |date|
   assert_equal [], Holidays.on(date, :ca_bc)
 end
@@ -165,7 +165,7 @@ end
   Date.civil(2017,2,20),
   Date.civil(2022,2,21),
   Date.civil(2023,2,20),
-  Date.civil(2044,2,15),
+  Date.civil(2044,2,15)
 ].each do |date|
   assert_equal 'Nova Scotia Heritage Day', Holidays.on(date, :ca_ns)[0][:name]
 end
