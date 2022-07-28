@@ -68,11 +68,11 @@ end
 
 # Family Day in Alberta - Should only be active on 1990 or later
 [
-  Date.civil(1990, 2, 19),
+    Date.civil(1990, 2, 19),
   Date.civil(2013, 2, 18),
   Date.civil(2014, 2, 17),
   Date.civil(2023, 2, 20),
-  Date.civil(2044, 2, 15),
+  Date.civil(2044, 2, 15)
 ].each do |date|
   assert_equal 'Family Day', Holidays.on(date, :ca_ab)[0][:name]
 end
@@ -81,7 +81,7 @@ end
 [
   Date.civil(1970,2,16),
   Date.civil(1988,2,15),
-  Date.civil(1989,2,20),
+  Date.civil(1989,2,20)
 ].each do |date|
   assert_equal [], Holidays.on(date, :ca_ab)
 end
@@ -126,7 +126,7 @@ end
   Date.civil(1988,2,15),
   Date.civil(1989,2,20),
   Date.civil(2006,2,20),
-  Date.civil(2007,2,19),
+  Date.civil(2007,2,19)
 ].each do |date|
   assert_equal [], Holidays.on(date, :ca_on)
 end
@@ -175,7 +175,7 @@ end
   Date.civil(2000,2,21),
   Date.civil(2012,2,20),
   Date.civil(2013,2,18),
-  Date.civil(2014,2,17),
+  Date.civil(2014,2,17)
 ].each do |date|
   assert_equal [], Holidays.on(date, :ca_ns)
 end
@@ -201,7 +201,7 @@ end
 # National Aboriginal Day in NT
 [
   Date.civil(2022,6,21),
-  Date.civil(2023,6,21),
+  Date.civil(2023,6,21)
 ].each do |date|
   assert_equal 'National Aboriginal Day', Holidays.on(date, :ca_nt)[0][:name]
 end
@@ -209,7 +209,7 @@ end
 # Fête Nationale in QC
 [
   Date.civil(2022,6,24),
-  Date.civil(2023,6,24),
+  Date.civil(2023,6,24)
 ].each do |date|
   assert_equal 'Fête Nationale', Holidays.on(date, :ca_qc)[0][:name]
 end
@@ -225,7 +225,7 @@ end
 # Discovery Day in Yukon
 [
   Date.civil(2022, 8, 15),
-  Date.civil(2023, 8, 21),
+  Date.civil(2023, 8, 21)
 ].each do |date|
   assert_equal 'Discovery Day', Holidays.on(date, [:ca_yk, :ca_yt])[0][:name]
 end
