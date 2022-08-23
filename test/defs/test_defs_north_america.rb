@@ -292,6 +292,18 @@ end
 
 assert_equal "Boxing Day", Holidays.on(Date.civil(2008, 12, 26), :ca_on)[0][:name]
 
+{Date.civil(2022,1,1) => 'New Year\'s Day',
+ Date.civil(2022,4,15) => 'Good Friday',
+ Date.civil(2022,5,23) => 'Victoria Day',
+ Date.civil(2022,7,1) => 'Canada Day',
+ Date.civil(2022,9,30) => 'Truth and Reconciliation Day',
+ Date.civil(2022,10,10) => 'Thanksgiving',
+ Date.civil(2022,11,11) => 'Remembrance Day',
+ Date.civil(2022,12,25) => 'Christmas Day',
+ Date.civil(2022,12,26) => 'Boxing Day',}.each do |date, name|
+  assert_equal name, Holidays.on(date, :ca_bank_holidays)[0][:name]
+end
+
 
 {Date.civil(2007,1,1) => 'Año nuevo',
  Date.civil(2007,2,5) => 'Día de la Constitución',
