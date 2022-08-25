@@ -3,16 +3,17 @@
 #
 # Notes:
 #  - 'Family Day' in various provinces are only celebrated after certain years: http://www.timeanddate.com/holidays/canada/family-day
+#  - Canada Bank Holidays source: https://www.rbcroyalbank.com/ach/2022_Canadian_Bank_Holiday_Schedule.pdf
 ---
 months:
   0:
     - name: Good Friday
-      regions: [ca]
+      regions: [ca, ca_bank_holidays]
       function: easter(year)
       function_modifier: -2
   1:
     - name: New Year's Day
-      regions: [ca]
+      regions: [ca, ca_bank_holidays]
       mday: 1
     - name: Bank Holiday
       regions: [ca_qc]
@@ -68,7 +69,7 @@ months:
       week: 4
   5:
     - name: Victoria Day
-      regions: [ca_ab, ca_sk, ca_on, ca_bc, ca_mb, ca_ns, ca_pe, ca_yt, ca_nt, ca_nl, ca_nu, ca_nb, ca_yk]
+      regions: [ca_ab, ca_sk, ca_on, ca_bc, ca_mb, ca_ns, ca_pe, ca_yt, ca_nt, ca_nl, ca_nu, ca_nb, ca_yk, ca_bank_holidays]
       function: ca_victoria_day(year)
     - name: National Patriotes Day
       regions: [ca_qc]
@@ -86,7 +87,7 @@ months:
       function: ca_nl_discovery_day(year)
   7:
     - name: Canada Day
-      regions: [ca]
+      regions: [ca, ca_bank_holidays]
       mday: 1
       observed: to_monday_if_sunday(date)
     - name: Nunavut Day
@@ -118,10 +119,14 @@ months:
       week: 1
       regions: [ca]
       wday: 1
+    - name: Truth and Reconciliation Day
+      regions: [ca_bank_holidays]
+      mday: 30
+      observed: to_weekday_if_weekend(date)
   10:
     - name: Thanksgiving
       week: 2
-      regions: [ca]
+      regions: [ca, ca_bank_holidays]
       wday: 1
   11:
     - name: Remembrance Day
@@ -137,14 +142,15 @@ months:
           ca_nb,
           ca_yk,
           ca_yt,
+          ca_bank_holidays,
         ]
       mday: 11
   12:
     - name: Christmas Day
-      regions: [ca]
+      regions: [ca, ca_bank_holidays]
       mday: 25
     - name: Boxing Day
-      regions: [ca_on]
+      regions: [ca_on, ca_bank_holidays]
       mday: 26
 methods:
   ca_victoria_day:
@@ -454,3 +460,18 @@ tests: |
   end
 
   assert_equal "Boxing Day", Holidays.on(Date.civil(2008, 12, 26), :ca_on)[0][:name]
+
+  {Date.civil(2022,1,1) => 'New Year\'s Day',
+   Date.civil(2022,4,15) => 'Good Friday',
+   Date.civil(2022,5,23) => 'Victoria Day',
+   Date.civil(2022,7,1) => 'Canada Day',
+   Date.civil(2022,9,30) => 'Truth and Reconciliation Day',
+   Date.civil(2022,10,10) => 'Thanksgiving',
+   Date.civil(2022,11,11) => 'Remembrance Day',
+   Date.civil(2022,12,25) => 'Christmas Day',
+   Date.civil(2022,12,26) => 'Boxing Day'}.each do |date, name|
+    assert_equal name, Holidays.on(date, :ca_bank_holidays)[0][:name]
+  end
+
+  assert_equal "Truth and Reconciliation Day", Date.civil(2023,9,29).holidays(:ca_bank_holidays, :observed)[0][:name]
+  assert_equal "Truth and Reconciliation Day", Date.civil(2023,9,30).holidays(:ca_bank_holidays)[0][:name]
