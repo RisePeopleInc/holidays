@@ -122,6 +122,7 @@ months:
     - name: Truth and Reconciliation Day
       regions: [ca_bank_holidays]
       mday: 30
+      observed: to_weekday_if_weekend(date)
   10:
     - name: Thanksgiving
       week: 2
@@ -468,6 +469,9 @@ tests: |
    Date.civil(2022,10,10) => 'Thanksgiving',
    Date.civil(2022,11,11) => 'Remembrance Day',
    Date.civil(2022,12,25) => 'Christmas Day',
-   Date.civil(2022,12,26) => 'Boxing Day',}.each do |date, name|
+   Date.civil(2022,12,26) => 'Boxing Day'}.each do |date, name|
     assert_equal name, Holidays.on(date, :ca_bank_holidays)[0][:name]
   end
+
+  assert_equal "Truth and Reconciliation Day", Date.civil(2023,9,29).holidays(:ca_bank_holidays, :observed)[0][:name]
+  assert_equal "Truth and Reconciliation Day", Date.civil(2023,9,30).holidays(:ca_bank_holidays)[0][:name]
