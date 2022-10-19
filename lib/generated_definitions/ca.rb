@@ -13,14 +13,13 @@ module Holidays
   # All the definitions are available at https://github.com/holidays/holidays
   module CA # :nodoc:
     def self.defined_regions
-      [:ca, :ca_bank_holidays, :ca_qc, :ca_ab, :ca_sk, :ca_on, :ca_bc, :ca_mb, :ca_ns, :ca_pe, :ca_yt, :ca_nt, :ca_nl, :ca_nu, :ca_nb, :ca_yk, :us]
+      [:ca, :ca_bank_holidays, :ca_ab, :ca_sk, :ca_on, :ca_bc, :ca_mb, :ca_ns, :ca_pe, :ca_yt, :ca_nt, :ca_nl, :ca_nu, :ca_nb, :ca_yk, :ca_qc, :us]
     end
 
     def self.holidays_by_month
       {
               0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:ca, :ca_bank_holidays]}],
-      1 => [{:mday => 1, :name => "New Year's Day", :regions => [:ca, :ca_bank_holidays]},
-            {:mday => 2, :name => "Bank Holiday", :regions => [:ca_qc]}],
+      1 => [{:mday => 1, :name => "New Year's Day", :regions => [:ca, :ca_bank_holidays]}],
       2 => [{:wday => 1, :week => 3,  :year_ranges => [{:after => 1990}],:name => "Family Day", :regions => [:ca_ab]},
             {:wday => 1, :week => 3,  :year_ranges => [{:after => 2007}],:name => "Family Day", :regions => [:ca_sk]},
             {:wday => 1, :week => 3,  :year_ranges => [{:after => 2008}],:name => "Family Day", :regions => [:ca_on]},

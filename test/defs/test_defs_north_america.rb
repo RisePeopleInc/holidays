@@ -36,15 +36,6 @@ class North_americaDefinitionTests < Test::Unit::TestCase  # :nodoc:
   assert_equal name, (Holidays.on(date, :ca)[0] || {})[:name]
 end
 
-# Bank Holiday in Quebec
-[
-  Date.civil(2021, 1, 2),
-  Date.civil(2022, 1, 2),
-  Date.civil(2023, 1, 2),
-  Date.civil(2024, 1, 2)
-].each do |date|
-  assert_equal 'Bank Holiday', Holidays.on(date, :ca_qc)[0][:name]
-end
 
 # Heritage Day in Yukon
 [
