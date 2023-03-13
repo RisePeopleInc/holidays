@@ -47,7 +47,7 @@ module Holidays
             {:wday => 1, :week => 1, :name => "New Brunswick Day", :regions => [:ca_nb]},
             {:wday => 1, :week => 3, :name => "Discovery Day", :regions => [:ca_yk, :ca_yt]}],
       9 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:ca]},
-            {:mday => 30, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "Truth and Reconciliation Day", :regions => [:ca_bank_holidays]}],
+            {:mday => 30, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "Truth and Reconciliation Day", :regions => [:ca_bc, :ca_bank_holidays]}],
       10 => [{:wday => 1, :week => 2, :name => "Thanksgiving", :regions => [:ca, :ca_bank_holidays]},
             {:mday => 31, :type => :informal, :name => "Halloween", :regions => [:us, :ca]}],
       11 => [{:mday => 11, :name => "Remembrance Day", :regions => [:ca_ab, :ca_sk, :ca_bc, :ca_pe, :ca_nl, :ca_nt, :ca_nu, :ca_nb, :ca_yk, :ca_yt, :ca_bank_holidays]}],
