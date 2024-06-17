@@ -60,7 +60,7 @@ module Holidays
             {:mday => 4, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "Independence Day", :regions => [:us]}],
       8 => [{:wday => 1, :week => 1, :name => "BC Day", :regions => [:ca_bc]},
             {:wday => 1, :week => 1, :name => "Saskatchewan Day", :regions => [:ca_sk]},
-            {:wday => 1, :week => 1, :name => "Civic Holiday", :regions => [:ca_nt, :ca_nu, :ca_pe, :ca_ns, :ca_mb]},
+            {:wday => 1, :week => 1, :name => "Civic Holiday", :regions => [:ca_nt, :ca_nu, :ca_pe, :ca_ns, :ca_mb, :ca_on]},
             {:wday => 1, :week => 1, :name => "New Brunswick Day", :regions => [:ca_nb]},
             {:wday => 1, :week => 3, :name => "Discovery Day", :regions => [:ca_yk, :ca_yt]}],
       9 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:ca]},
