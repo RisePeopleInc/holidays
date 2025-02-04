@@ -35,7 +35,7 @@ module Holidays
             {:wday => 1, :week => 3, :name => "Louis Riel Day", :regions => [:ca_mb]},
             {:wday => 1, :week => 3,  :year_ranges => [{:after => 2015}],:name => "Nova Scotia Heritage Day", :regions => [:ca_ns]},
             {:wday => 1, :week => 3, :name => "Islander Day", :regions => [:ca_pe]},
-            {:wday => 5, :week => 4, :name => "Heritage Day", :regions => [:ca_yt]},
+            {:wday => 5, :week => 3, :name => "Heritage Day", :regions => [:ca_yt]},
             {:wday => 1, :week => 1, :name => "Día de la Constitución", :regions => [:mx]},
             {:wday => 1, :week => 3, :name => "Presidents' Day", :regions => [:us]},
             {:mday => 2, :type => :informal, :name => "Groundhog Day", :regions => [:us, :ca]},
