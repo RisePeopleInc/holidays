@@ -60,10 +60,6 @@ months:
       regions: [ca_pe]
       wday: 1
       week: 3
-    - name: Heritage Day
-      regions: [ca_yt]
-      wday: 5
-      week: 3
   5:
     - name: Victoria Day
       regions:
