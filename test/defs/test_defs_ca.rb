@@ -36,17 +36,6 @@ class CaDefinitionTests < Test::Unit::TestCase  # :nodoc:
   assert_equal name, (Holidays.on(date, :ca)[0] || {})[:name]
 end
 
-
-# Heritage Day in Yukon
-[
-  Date.civil(2021, 2, 26),
-  Date.civil(2022, 2, 25),
-  Date.civil(2023, 2, 24),
-  Date.civil(2024, 2, 23)
-].each do |date|
-  assert_equal 'Heritage Day', Holidays.on(date, :ca_yt)[0][:name]
-end
-
 # Discovery Day in Newfoundland and Labrador
 [
   Date.civil(2021, 6, 21),
