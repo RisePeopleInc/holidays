@@ -53,6 +53,7 @@ module Holidays
             {:mday => 21, :name => "National Aboriginal Day", :regions => [:ca_nt]},
             {:function => "ca_nl_discovery_day(year)", :function_arguments => [:year], :name => "Discovery Day", :regions => [:ca_nl]},
             {:wday => 0, :week => 3, :type => :informal, :name => "Día del Padre", :regions => [:mx]},
+            {:mday => 21, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "National Indigenous People's Day", :regions => [:ca_yk, :ca_yt]},
             {:wday => 0, :week => 3, :type => :informal, :name => "Father's Day", :regions => [:us, :ca]}],
       7 => [{:mday => 1, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Canada Day", :regions => [:ca, :ca_bank_holidays]},
             {:mday => 9, :name => "Nunavut Day", :regions => [:ca_nu]},

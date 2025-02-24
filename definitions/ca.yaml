@@ -94,6 +94,9 @@ months:
     - name: Discovery Day
       regions: [ca_nl]
       function: ca_nl_discovery_day(year)
+    - name: National Indigenous People's Day
+      regions: [ca_yk, ca_yt]
+      mday: 21
   7:
     - name: Canada Day
       regions: [ca, ca_bank_holidays]
