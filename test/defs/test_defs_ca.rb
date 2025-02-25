@@ -46,9 +46,16 @@ end
   assert_equal 'Discovery Day', Holidays.on(date, :ca_nl)[0][:name]
 end
 
+[
+  Date.civil(2024, 6, 23),
+  Date.civil(2025, 6, 23)
+].each do |date|
+  assert_equal "National Indigenous People's Day", Holidays.on(date, [:ca_yk, :ca_yt])[0][:name]
+end
+
 # Family Day in Alberta - Should only be active on 1990 or later
 [
-    Date.civil(1990, 2, 19),
+  Date.civil(1990, 2, 19),
   Date.civil(2013, 2, 18),
   Date.civil(2014, 2, 17),
   Date.civil(2023, 2, 20),
