@@ -47,8 +47,8 @@ end
 end
 
 [
-  Date.civil(2024, 6, 21),
-  Date.civil(2025, 6, 21)
+  Date.civil(2024, 6, 23),
+  Date.civil(2025, 6, 23)
 ].each do |date|
   assert_equal "National Indigenous People's Day", Holidays.on(date, [:ca_yk, :ca_yt])[0][:name]
 end
