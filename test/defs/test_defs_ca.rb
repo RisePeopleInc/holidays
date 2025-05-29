@@ -292,7 +292,7 @@ end
 assert_equal "Truth and Reconciliation Day", Date.civil(2023,9,29).holidays(:ca_bank_holidays, :observed)[0][:name]
 assert_equal "Truth and Reconciliation Day", Date.civil(2023,9,30).holidays(:ca_bank_holidays)[0][:name]
 
-# Truth and Reconciliation Day in BC
+# Truth and Reconciliation Day in BC, MB, PEI, Nunavut, NWT, Yukon
 [
   Date.civil(2023,9,30),
   Date.civil(2024,9,30),
