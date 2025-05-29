@@ -257,7 +257,6 @@ end
       ca_nu: 'Civic Holiday',
       ca_pe: 'Civic Holiday',
       ca_ns: 'Civic Holiday',
-      ca_mb: 'Civic Holiday',
       ca_nb: 'New Brunswick Day' }.each do |region, name|
     assert_equal name, Holidays.on(date, region)[0][:name]
   end
@@ -297,12 +296,18 @@ end
 assert_equal "Truth and Reconciliation Day", Date.civil(2023,9,29).holidays(:ca_bank_holidays, :observed)[0][:name]
 assert_equal "Truth and Reconciliation Day", Date.civil(2023,9,30).holidays(:ca_bank_holidays)[0][:name]
 
-# Truth and Reconciliation Day in BC
+# Truth and Reconciliation Day in BC, MB, PEI, Nunavut, NWT, Yukon
 [
   Date.civil(2023,9,30),
-  Date.civil(2024,9,30)
+  Date.civil(2024,9,30),
+  Date.civil(2025,9,30)
 ].each do |date|
   assert_equal 'Truth and Reconciliation Day', Holidays.on(date, :ca_bc)[0][:name]
+  assert_equal 'Truth and Reconciliation Day', Holidays.on(date, :ca_mb)[0][:name]
+  assert_equal 'Truth and Reconciliation Day', Holidays.on(date, :ca_pe)[0][:name]
+  assert_equal 'Truth and Reconciliation Day', Holidays.on(date, :ca_nu)[0][:name]
+  assert_equal 'Truth and Reconciliation Day', Holidays.on(date, :ca_nt)[0][:name]
+  assert_equal 'Truth and Reconciliation Day', Holidays.on(date, :ca_yt)[0][:name]
 end
 
 
