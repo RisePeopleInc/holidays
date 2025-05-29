@@ -24,16 +24,41 @@ class CaDefinitionTests < Test::Unit::TestCase  # :nodoc:
   Date.civil(2021, 9, 6) => 'Labour Day',
   Date.civil(2022, 9, 5) => 'Labour Day',
   Date.civil(2023, 9, 4) => 'Labour Day',
-  Date.civil(2008, 10, 13) => 'Thanksgiving',
-  Date.civil(2021, 10, 11) => 'Thanksgiving',
-  Date.civil(2022, 10, 10) => 'Thanksgiving',
-  Date.civil(2023, 10, 9) => 'Thanksgiving',
   Date.civil(2008, 12, 25) => 'Christmas Day',
   Date.civil(2021, 12, 25) => 'Christmas Day',
   Date.civil(2022, 12, 25) => 'Christmas Day',
   Date.civil(2023, 12, 25) => 'Christmas Day'
  }.each do |date, name|
   assert_equal name, (Holidays.on(date, :ca)[0] || {})[:name]
+end
+
+# Thanks giving should be available in all provinces
+# except (NS)
+{
+  Date.civil(2008, 10, 13) => 'Thanksgiving',
+  Date.civil(2021, 10, 11) => 'Thanksgiving',
+  Date.civil(2022, 10, 10) => 'Thanksgiving',
+  Date.civil(2023, 10, 9) => 'Thanksgiving',
+  Date.civil(2025, 10, 13) => 'Thanksgiving'
+ }.each do |date, name|
+  [
+    :ca_ab, 
+    :ca_sk, 
+    :ca_on, 
+    :ca_bc, 
+    :ca_mb, 
+    :ca_pe, 
+    :ca_yt, 
+    :ca_nt, 
+    :ca_nl, 
+    :ca_nu, 
+    :ca_nb, 
+    :ca_yk, 
+    :ca_qc, 
+    :ca_bank_holidays
+  ].each do |region|
+    assert_equal name, (Holidays.on(date, region)[0] || {})[:name]
+ end
 end
 
 # Discovery Day in Newfoundland and Labrador
@@ -218,14 +243,13 @@ end
 end
 
 # Victoria Day in all Canadian provinces
-# except (QC)
+# except (QC, NS)
 %i[
   ca_ab
   ca_sk
   ca_on
   ca_bc
   ca_mb
-  ca_ns
   ca_pe
   ca_yt
   ca_nt
@@ -252,7 +276,6 @@ end
       ca_nt: 'Civic Holiday',
       ca_nu: 'Civic Holiday',
       ca_pe: 'Civic Holiday',
-      ca_ns: 'Civic Holiday',
       ca_nb: 'New Brunswick Day' }.each do |region, name|
     assert_equal name, Holidays.on(date, region)[0][:name]
   end
