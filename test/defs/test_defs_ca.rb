@@ -282,6 +282,7 @@ end
       ca_nu: 'Civic Holiday',
       ca_pe: 'Civic Holiday',
       ca_ns: 'Civic Holiday',
+      ca_mb: 'Civic Holiday',
       ca_nb: 'New Brunswick Day' }.each do |region, name|
     assert_equal name, Holidays.on(date, region)[0][:name]
   end

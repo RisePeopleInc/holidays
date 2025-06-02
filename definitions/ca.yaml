@@ -116,7 +116,7 @@ months:
       wday: 1
     - name: Civic Holiday
       week: 1
-      regions: [ca_nt, ca_nu, ca_pe, ca_ns]
+      regions: [ca_nt, ca_nu, ca_pe, ca_ns, ca_mb]
       wday: 1
     - name: New Brunswick Day
       week: 1
@@ -438,6 +438,7 @@ tests: |
         ca_nu: 'Civic Holiday',
         ca_pe: 'Civic Holiday',
         ca_ns: 'Civic Holiday',
+        ca_mb: 'Civic Holiday',
         ca_nb: 'New Brunswick Day' }.each do |region, name|
       assert_equal name, Holidays.on(date, region)[0][:name]
     end
