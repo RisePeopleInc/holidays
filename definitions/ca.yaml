@@ -69,6 +69,7 @@ months:
           ca_on,
           ca_bc,
           ca_mb,
+          ca_ns,
           ca_pe,
           ca_yt,
           ca_nt,
@@ -115,7 +116,7 @@ months:
       wday: 1
     - name: Civic Holiday
       week: 1
-      regions: [ca_nt, ca_nu, ca_pe]
+      regions: [ca_nt, ca_nu, ca_pe, ca_ns, ca_mb]
       wday: 1
     - name: New Brunswick Day
       week: 1
@@ -137,7 +138,7 @@ months:
   10:
     - name: Thanksgiving
       week: 2
-      regions: [:ca_ab, :ca_sk, :ca_on, :ca_bc, :ca_mb, :ca_pe, :ca_yt, :ca_nt, :ca_nl, :ca_nu, :ca_nb, :ca_yk, :ca_qc, ca_bank_holidays]
+      regions: [ca, ca_bank_holidays]
       wday: 1
   11:
     - name: Remembrance Day
@@ -402,13 +403,14 @@ tests: |
   end
 
   # Victoria Day in all Canadian provinces
-  # except (QC, NS)
+  # except (QC)
   %i[
     ca_ab
     ca_sk
     ca_on
     ca_bc
     ca_mb
+    ca_ns
     ca_pe
     ca_yt
     ca_nt
@@ -435,6 +437,8 @@ tests: |
         ca_nt: 'Civic Holiday',
         ca_nu: 'Civic Holiday',
         ca_pe: 'Civic Holiday',
+        ca_ns: 'Civic Holiday',
+        ca_mb: 'Civic Holiday',
         ca_nb: 'New Brunswick Day' }.each do |region, name|
       assert_equal name, Holidays.on(date, region)[0][:name]
     end
