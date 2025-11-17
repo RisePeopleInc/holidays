@@ -90,9 +90,11 @@ class HolidaysTests < Test::Unit::TestCase
   end
 
   def test_any_region
-    # Should return Victoria Day.
-    holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca)
+    # Victoria Day is no longer available for :ca (excluded for ca_nb), but available for specific provinces
+    # Test with a specific province that has Victoria Day
+    holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca_on)
     assert_equal 1, holidays.length
+    assert_equal 'Victoria Day', holidays.first[:name]
 
     # Should return Victoria Day and National Patriotes Day.
     #
@@ -107,13 +109,14 @@ class HolidaysTests < Test::Unit::TestCase
   end
 
   def test_any_region_holiday_next
-    # Should return Victoria Day.
-    holidays = Holidays.next_holidays(1, [:ca], Date.civil(2008,5,1))
+    # Victoria Day is no longer available for :ca (excluded for ca_nb), but available for specific provinces
+    # Test with a specific province that has Victoria Day
+    holidays = Holidays.next_holidays(1, [:ca_on], Date.civil(2008,5,1))
     assert_equal 1, holidays.length
     assert_equal ['2008-05-19','Victoria Day'] , [holidays.first[:date].to_s, holidays.first[:name].to_s]
 
     # Should return 2 holidays.
-    holidays = Holidays.next_holidays(2, [:ca], Date.civil(2008,5,1))
+    holidays = Holidays.next_holidays(2, [:ca_on], Date.civil(2008,5,1))
     assert_equal 2, holidays.length
 
     # Should return 1 holiday in July
@@ -208,13 +211,16 @@ class HolidaysTests < Test::Unit::TestCase
   end
 
   def test_sub_regions
-    # Should return Victoria Day.
-    holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca)
+    # Victoria Day is no longer available for :ca (excluded for ca_nb), but available for specific provinces
+    # Test with a specific province that has Victoria Day
+    holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca_on)
     assert_equal 1, holidays.length
+    assert_equal 'Victoria Day', holidays.first[:name]
 
-    # Should return Victoria Da and National Patriotes Day.
+    # Should return National Patriotes Day (Quebec has National Patriotes Day, not Victoria Day).
     holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca_qc)
-    assert_equal 2, holidays.length
+    assert_equal 1, holidays.length
+    assert_equal 'National Patriotes Day', holidays.first[:name]
 
     # Should return Victoria Day and National Patriotes Day.
     holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca_)
@@ -222,16 +228,16 @@ class HolidaysTests < Test::Unit::TestCase
   end
 
   def test_sub_regions_holiday_next
-    # Should return Victoria Day.
-    holidays = Holidays.next_holidays(2, [:ca], Date.civil(2008,5,1))
+    # Victoria Day is no longer available for :ca (excluded for ca_nb), but available for specific provinces
+    # Test with a specific province that has Victoria Day
+    holidays = Holidays.next_holidays(2, [:ca_on], Date.civil(2008,5,1))
     assert_equal 2, holidays.length
     assert_equal ['2008-05-19','Victoria Day'] , [holidays.first[:date].to_s, holidays.first[:name].to_s]
 
-    # Should return Victoria Da and National Patriotes Day.
-    holidays = Holidays.next_holidays(2, [:ca_qc], Date.civil(2008,5,1))
-    assert_equal 2, holidays.length
-    assert_equal ['2008-05-19','Victoria Day'] , [holidays.first[:date].to_s, holidays.first[:name].to_s]
-    assert_equal ['2008-05-19','National Patriotes Day'] , [holidays.last[:date].to_s, holidays.last[:name].to_s]
+    # Should return National Patriotes Day (Quebec has National Patriotes Day, not Victoria Day).
+    holidays = Holidays.next_holidays(1, [:ca_qc], Date.civil(2008,5,1))
+    assert_equal 1, holidays.length
+    assert_equal ['2008-05-19','National Patriotes Day'] , [holidays.first[:date].to_s, holidays.first[:name].to_s]
 
     # Should return Victoria Day and National Patriotes Day.
     holidays = Holidays.next_holidays(2, [:ca_], Date.civil(2008,5,1))

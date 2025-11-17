@@ -75,7 +75,6 @@ months:
           ca_nt,
           ca_nl,
           ca_nu,
-          ca_nb,
           ca_yk,
           ca_bank_holidays,
         ]
@@ -138,7 +137,7 @@ months:
   10:
     - name: Thanksgiving
       week: 2
-      regions: [ca, ca_bank_holidays]
+      regions: [ca_ab, ca_sk, ca_on, ca_bc, ca_mb, ca_ns, ca_pe, ca_yt, ca_nt, ca_nl, ca_nu, ca_yk, ca_qc, ca_bank_holidays]
       wday: 1
   11:
     - name: Remembrance Day

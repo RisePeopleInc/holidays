@@ -13,7 +13,7 @@ module Holidays
   # All the definitions are available at https://github.com/holidays/holidays
   module CA # :nodoc:
     def self.defined_regions
-      [:ca, :ca_bank_holidays, :ca_ab, :ca_sk, :ca_on, :ca_bc, :ca_mb, :ca_ns, :ca_pe, :ca_yt, :ca_nt, :ca_nl, :ca_nu, :ca_nb, :ca_yk, :ca_qc, :us]
+      [:ca, :ca_bank_holidays, :ca_ab, :ca_sk, :ca_on, :ca_bc, :ca_mb, :ca_ns, :ca_pe, :ca_yt, :ca_nt, :ca_nl, :ca_nu, :ca_yk, :ca_qc, :ca_nb, :us]
     end
 
     def self.holidays_by_month
@@ -30,7 +30,7 @@ module Holidays
             {:wday => 1, :week => 3, :name => "Islander Day", :regions => [:ca_pe]},
             {:mday => 2, :type => :informal, :name => "Groundhog Day", :regions => [:us, :ca]},
             {:mday => 14, :type => :informal, :name => "Valentine's Day", :regions => [:us, :ca]}],
-      5 => [{:function => "ca_victoria_day(year)", :function_arguments => [:year], :name => "Victoria Day", :regions => [:ca_ab, :ca_sk, :ca_on, :ca_bc, :ca_mb, :ca_ns, :ca_pe, :ca_yt, :ca_nt, :ca_nl, :ca_nu, :ca_nb, :ca_yk, :ca_bank_holidays]},
+      5 => [{:function => "ca_victoria_day(year)", :function_arguments => [:year], :name => "Victoria Day", :regions => [:ca_ab, :ca_sk, :ca_on, :ca_bc, :ca_mb, :ca_ns, :ca_pe, :ca_yt, :ca_nt, :ca_nl, :ca_nu, :ca_yk, :ca_bank_holidays]},
             {:function => "ca_victoria_day(year)", :function_arguments => [:year], :name => "National Patriotes Day", :regions => [:ca_qc]},
             {:wday => 0, :week => 2, :type => :informal, :name => "Mother's Day", :regions => [:us, :ca]},
             {:wday => 6, :week => 3, :type => :informal, :name => "Armed Forces Day", :regions => [:us]}],
@@ -47,8 +47,8 @@ module Holidays
             {:wday => 1, :week => 1, :name => "New Brunswick Day", :regions => [:ca_nb]},
             {:wday => 1, :week => 3, :name => "Discovery Day", :regions => [:ca_yk, :ca_yt]}],
       9 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:ca]},
-            {:mday => 30, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "Truth and Reconciliation Day", :regions => [:ca_bc, :ca_mb, :ca_pe, :ca_nt, :ca_nu, :ca_yt, :ca_bank_holidays]}],
-      10 => [{:wday => 1, :week => 2, :name => "Thanksgiving", :regions => [:ca, :ca_bank_holidays]},
+            {:mday => 30, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "Truth and Reconciliation Day", :regions => [:ca_bc, :ca_mb, :ca_pe, :ca_nu, :ca_nt, :ca_yt, :ca_bank_holidays]}],
+      10 => [{:wday => 1, :week => 2, :name => "Thanksgiving", :regions => [:ca_ab, :ca_sk, :ca_on, :ca_bc, :ca_mb, :ca_ns, :ca_pe, :ca_yt, :ca_nt, :ca_nl, :ca_nu, :ca_yk, :ca_qc, :ca_bank_holidays]},
             {:mday => 31, :type => :informal, :name => "Halloween", :regions => [:us, :ca]}],
       11 => [{:mday => 11, :name => "Remembrance Day", :regions => [:ca_ab, :ca_sk, :ca_bc, :ca_pe, :ca_nl, :ca_nt, :ca_nu, :ca_nb, :ca_yk, :ca_yt, :ca_bank_holidays]}],
       12 => [{:mday => 25, :name => "Christmas Day", :regions => [:ca, :ca_bank_holidays]},
