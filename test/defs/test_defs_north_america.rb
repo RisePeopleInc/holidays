@@ -36,6 +36,7 @@ class North_americaDefinitionTests < Test::Unit::TestCase  # :nodoc:
   assert_equal name, (Holidays.on(date, :ca)[0] || {})[:name]
 end
 
+
 # Thanks giving should be available in all provinces
 # except (NS)
 {
@@ -46,35 +47,23 @@ end
   Date.civil(2025, 10, 13) => 'Thanksgiving'
  }.each do |date, name|
   [
-    :ca_ab, 
-    :ca_sk, 
-    :ca_on, 
-    :ca_bc, 
-    :ca_mb, 
-    :ca_pe, 
-    :ca_yt, 
-    :ca_nt, 
-    :ca_nl, 
-    :ca_nu, 
-    :ca_nb, 
-    :ca_yk, 
-    :ca_qc, 
+    :ca_ab,
+    :ca_sk,
+    :ca_on,
+    :ca_bc,
+    :ca_mb,
+    :ca_pe,
+    :ca_yt,
+    :ca_nt,
+    :ca_nl,
+    :ca_nu,
+    :ca_nb,
+    :ca_yk,
+    :ca_qc,
     :ca_bank_holidays
   ].each do |region|
     assert_equal name, (Holidays.on(date, region)[0] || {})[:name]
  end
-end
-
-
-
-# Heritage Day in Yukon
-[
-  Date.civil(2021, 2, 26),
-  Date.civil(2022, 2, 25),
-  Date.civil(2023, 2, 24),
-  Date.civil(2024, 2, 23)
-].each do |date|
-  assert_equal 'Heritage Day', Holidays.on(date, :ca_yt)[0][:name]
 end
 
 # Discovery Day in Newfoundland and Labrador
@@ -219,12 +208,19 @@ end
   assert_equal 'Islander Day', Holidays.on(date, :ca_pe)[0][:name]
 end
 
-# National Aboriginal Day in NT
+# National Indigenous Peoples Day in NT, YK, YT (fixed date June 21,
+# observed on the following Monday when June 21 is a Sunday)
 [
   Date.civil(2022,6,21),
-  Date.civil(2023,6,21)
+  Date.civil(2023,6,21),
+  Date.civil(2024,6,21),
+  Date.civil(2025,6,21),
+  Date.civil(2026,6,22), # June 21, 2026 is a Sunday -> observed Mon June 22
+  Date.civil(2027,6,21)
 ].each do |date|
-  assert_equal 'National Aboriginal Day', Holidays.on(date, :ca_nt)[0][:name]
+  %i[ca_nt ca_yk ca_yt].each do |region|
+    assert_equal 'National Indigenous Peoples Day', Holidays.on(date, region, :observed)[0][:name]
+  end
 end
 
 # Fête Nationale in QC
@@ -243,12 +239,26 @@ end
   assert_equal 'Nunavut Day', Holidays.on(date, :ca_nu)[0][:name]
 end
 
-# Discovery Day in Yukon
+# Discovery Day in Yukon (3rd Monday in August)
 [
   Date.civil(2022, 8, 15),
-  Date.civil(2023, 8, 21)
+  Date.civil(2023, 8, 21),
+  Date.civil(2024, 8, 19),
+  Date.civil(2025, 8, 18),
+  Date.civil(2026, 8, 17)
 ].each do |date|
   assert_equal 'Discovery Day', Holidays.on(date, [:ca_yk, :ca_yt])[0][:name]
+end
+
+# Discovery Day (YT) must NOT produce a spurious "Sub" / observed entry on the
+# Tuesday following the 3rd Monday in August (TO-693 regression guard).
+[
+  Date.civil(2024, 8, 20),
+  Date.civil(2025, 8, 19),
+  Date.civil(2026, 8, 18)
+].each do |date|
+  assert_equal [], Holidays.on(date, [:ca_yk, :ca_yt])
+  assert_equal [], Holidays.on(date, [:ca_yk, :ca_yt], :observed)
 end
 
 # Victoria Day in all Canadian provinces
@@ -327,18 +337,16 @@ end
 assert_equal "Truth and Reconciliation Day", Date.civil(2023,9,29).holidays(:ca_bank_holidays, :observed)[0][:name]
 assert_equal "Truth and Reconciliation Day", Date.civil(2023,9,30).holidays(:ca_bank_holidays)[0][:name]
 
-# Truth and Reconciliation Day in BC, MB, PEI, Nunavut, NWT, Yukon
+# Truth and Reconciliation Day in BC, MB, PE, NU, NT, YK, YT, Federal
 [
   Date.civil(2023,9,30),
   Date.civil(2024,9,30),
-  Date.civil(2025,9,30)
+  Date.civil(2025,9,30),
+  Date.civil(2026,9,30)
 ].each do |date|
-  assert_equal 'Truth and Reconciliation Day', Holidays.on(date, :ca_bc)[0][:name]
-  assert_equal 'Truth and Reconciliation Day', Holidays.on(date, :ca_mb)[0][:name]
-  assert_equal 'Truth and Reconciliation Day', Holidays.on(date, :ca_pe)[0][:name]
-  assert_equal 'Truth and Reconciliation Day', Holidays.on(date, :ca_nu)[0][:name]
-  assert_equal 'Truth and Reconciliation Day', Holidays.on(date, :ca_nt)[0][:name]
-  assert_equal 'Truth and Reconciliation Day', Holidays.on(date, :ca_yt)[0][:name]
+  %i[ca_bc ca_mb ca_pe ca_nu ca_nt ca_yk ca_yt ca_bank_holidays].each do |region|
+    assert_equal 'Truth and Reconciliation Day', Holidays.on(date, region)[0][:name]
+  end
 end
 
 

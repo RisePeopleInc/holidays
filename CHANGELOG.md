@@ -1,4 +1,10 @@
 # Ruby Holidays Gem CHANGELOG
+## 4.9.18
+
+* Fix observed date for National Indigenous Peoples Day in YT/YK/NT (June 21, observed the following Monday when it falls on a Sunday).
+* Consolidate stale "National Aboriginal Day" (NT) and "National Indigenous People's Day" (YK/YT) entries under the current "National Indigenous Peoples Day" name.
+* Add `ca_yk` to the Truth and Reconciliation Day region list so Yukon consumers querying either YK or YT alias receive the holiday.
+
 ## 4.9.1
 
 * Remove Easter Monday.
