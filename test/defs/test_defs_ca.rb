@@ -75,11 +75,19 @@ end
   assert_equal 'Discovery Day', Holidays.on(date, :ca_nl)[0][:name]
 end
 
+# National Indigenous Peoples Day in NT, YK, YT (fixed date June 21,
+# observed on the following Monday when June 21 is a Sunday)
 [
-  Date.civil(2024, 6, 23),
-  Date.civil(2025, 6, 23)
+  Date.civil(2022, 6, 21),
+  Date.civil(2023, 6, 21),
+  Date.civil(2024, 6, 21),
+  Date.civil(2025, 6, 21),
+  Date.civil(2026, 6, 22), # June 21, 2026 is a Sunday -> observed Mon June 22
+  Date.civil(2027, 6, 21)
 ].each do |date|
-  assert_equal "National Indigenous People's Day", Holidays.on(date, [:ca_yk, :ca_yt])[0][:name]
+  %i[ca_nt ca_yk ca_yt].each do |region|
+    assert_equal 'National Indigenous Peoples Day', Holidays.on(date, region, :observed)[0][:name]
+  end
 end
 
 # Family Day in Alberta - Should only be active on 1990 or later
@@ -214,14 +222,6 @@ end
   assert_equal 'Islander Day', Holidays.on(date, :ca_pe)[0][:name]
 end
 
-# National Aboriginal Day in NT
-[
-  Date.civil(2022,6,21),
-  Date.civil(2023,6,21)
-].each do |date|
-  assert_equal 'National Aboriginal Day', Holidays.on(date, :ca_nt)[0][:name]
-end
-
 # Fête Nationale in QC
 [
   Date.civil(2022,6,24),
@@ -238,10 +238,13 @@ end
   assert_equal 'Nunavut Day', Holidays.on(date, :ca_nu)[0][:name]
 end
 
-# Discovery Day in Yukon
+# Discovery Day in Yukon (3rd Monday in August)
 [
   Date.civil(2022, 8, 15),
-  Date.civil(2023, 8, 21)
+  Date.civil(2023, 8, 21),
+  Date.civil(2024, 8, 19),
+  Date.civil(2025, 8, 18),
+  Date.civil(2026, 8, 17)
 ].each do |date|
   assert_equal 'Discovery Day', Holidays.on(date, [:ca_yk, :ca_yt])[0][:name]
 end
@@ -326,7 +329,8 @@ assert_equal "Truth and Reconciliation Day", Date.civil(2023,9,30).holidays(:ca_
 [
   Date.civil(2023,9,30),
   Date.civil(2024,9,30),
-  Date.civil(2025,9,30)
+  Date.civil(2025,9,30),
+  Date.civil(2026,9,30)
 ].each do |date|
   assert_equal 'Truth and Reconciliation Day', Holidays.on(date, :ca_bc)[0][:name]
   assert_equal 'Truth and Reconciliation Day', Holidays.on(date, :ca_mb)[0][:name]
