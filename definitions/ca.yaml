@@ -130,7 +130,7 @@ months:
       regions: [ca]
       wday: 1
     - name: Truth and Reconciliation Day
-      regions: [ca_bc, ca_mb, ca_pe, ca_nu, ca_nt, ca_yt, ca_bank_holidays]
+      regions: [ca_bc, ca_mb, ca_pe, ca_nu, ca_nt, ca_yk, ca_yt, ca_bank_holidays]
       mday: 30
       observed: to_weekday_if_weekend(date)
   10:
@@ -216,14 +216,33 @@ tests: |
   end
 
 
-  # Heritage Day in Yukon
-  [
-    Date.civil(2021, 2, 26),
-    Date.civil(2022, 2, 25),
-    Date.civil(2023, 2, 24),
-    Date.civil(2024, 2, 23)
-  ].each do |date|
-    assert_equal 'Heritage Day', Holidays.on(date, :ca_yt)[0][:name]
+  # Thanks giving should be available in all provinces
+  # except (NS)
+  {
+    Date.civil(2008, 10, 13) => 'Thanksgiving',
+    Date.civil(2021, 10, 11) => 'Thanksgiving',
+    Date.civil(2022, 10, 10) => 'Thanksgiving',
+    Date.civil(2023, 10, 9) => 'Thanksgiving',
+    Date.civil(2025, 10, 13) => 'Thanksgiving'
+   }.each do |date, name|
+    [
+      :ca_ab,
+      :ca_sk,
+      :ca_on,
+      :ca_bc,
+      :ca_mb,
+      :ca_pe,
+      :ca_yt,
+      :ca_nt,
+      :ca_nl,
+      :ca_nu,
+      :ca_nb,
+      :ca_yk,
+      :ca_qc,
+      :ca_bank_holidays
+    ].each do |region|
+      assert_equal name, (Holidays.on(date, region)[0] || {})[:name]
+   end
   end
 
   # Discovery Day in Newfoundland and Labrador
@@ -497,14 +516,14 @@ tests: |
   assert_equal "Truth and Reconciliation Day", Date.civil(2023,9,29).holidays(:ca_bank_holidays, :observed)[0][:name]
   assert_equal "Truth and Reconciliation Day", Date.civil(2023,9,30).holidays(:ca_bank_holidays)[0][:name]
 
-  # Truth and Reconciliation Day in BC, MB, PE, NU, NT, YT, Federal
+  # Truth and Reconciliation Day in BC, MB, PE, NU, NT, YK, YT, Federal
   [
     Date.civil(2023,9,30),
     Date.civil(2024,9,30),
     Date.civil(2025,9,30),
     Date.civil(2026,9,30)
   ].each do |date|
-    %i[ca_bc ca_mb ca_pe ca_nu ca_nt ca_yt ca_bank_holidays].each do |region|
+    %i[ca_bc ca_mb ca_pe ca_nu ca_nt ca_yk ca_yt ca_bank_holidays].each do |region|
       assert_equal 'Truth and Reconciliation Day', Holidays.on(date, region)[0][:name]
     end
   end

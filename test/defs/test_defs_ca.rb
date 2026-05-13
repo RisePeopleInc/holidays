@@ -36,6 +36,7 @@ class CaDefinitionTests < Test::Unit::TestCase  # :nodoc:
   assert_equal name, (Holidays.on(date, :ca)[0] || {})[:name]
 end
 
+
 # Thanks giving should be available in all provinces
 # except (NS)
 {
@@ -46,19 +47,19 @@ end
   Date.civil(2025, 10, 13) => 'Thanksgiving'
  }.each do |date, name|
   [
-    :ca_ab, 
-    :ca_sk, 
-    :ca_on, 
-    :ca_bc, 
-    :ca_mb, 
-    :ca_pe, 
-    :ca_yt, 
-    :ca_nt, 
-    :ca_nl, 
-    :ca_nu, 
-    :ca_nb, 
-    :ca_yk, 
-    :ca_qc, 
+    :ca_ab,
+    :ca_sk,
+    :ca_on,
+    :ca_bc,
+    :ca_mb,
+    :ca_pe,
+    :ca_yt,
+    :ca_nt,
+    :ca_nl,
+    :ca_nu,
+    :ca_nb,
+    :ca_yk,
+    :ca_qc,
     :ca_bank_holidays
   ].each do |region|
     assert_equal name, (Holidays.on(date, region)[0] || {})[:name]
@@ -75,24 +76,9 @@ end
   assert_equal 'Discovery Day', Holidays.on(date, :ca_nl)[0][:name]
 end
 
-# National Indigenous Peoples Day in NT, YK, YT (fixed date June 21,
-# observed on the following Monday when June 21 is a Sunday)
-[
-  Date.civil(2022, 6, 21),
-  Date.civil(2023, 6, 21),
-  Date.civil(2024, 6, 21),
-  Date.civil(2025, 6, 21),
-  Date.civil(2026, 6, 22), # June 21, 2026 is a Sunday -> observed Mon June 22
-  Date.civil(2027, 6, 21)
-].each do |date|
-  %i[ca_nt ca_yk ca_yt].each do |region|
-    assert_equal 'National Indigenous Peoples Day', Holidays.on(date, region, :observed)[0][:name]
-  end
-end
-
 # Family Day in Alberta - Should only be active on 1990 or later
 [
-  Date.civil(1990, 2, 19),
+    Date.civil(1990, 2, 19),
   Date.civil(2013, 2, 18),
   Date.civil(2014, 2, 17),
   Date.civil(2023, 2, 20),
@@ -222,6 +208,21 @@ end
   assert_equal 'Islander Day', Holidays.on(date, :ca_pe)[0][:name]
 end
 
+# National Indigenous Peoples Day in NT, YK, YT (fixed date June 21,
+# observed on the following Monday when June 21 is a Sunday)
+[
+  Date.civil(2022,6,21),
+  Date.civil(2023,6,21),
+  Date.civil(2024,6,21),
+  Date.civil(2025,6,21),
+  Date.civil(2026,6,22), # June 21, 2026 is a Sunday -> observed Mon June 22
+  Date.civil(2027,6,21)
+].each do |date|
+  %i[ca_nt ca_yk ca_yt].each do |region|
+    assert_equal 'National Indigenous Peoples Day', Holidays.on(date, region, :observed)[0][:name]
+  end
+end
+
 # Fête Nationale in QC
 [
   Date.civil(2022,6,24),
@@ -336,14 +337,14 @@ end
 assert_equal "Truth and Reconciliation Day", Date.civil(2023,9,29).holidays(:ca_bank_holidays, :observed)[0][:name]
 assert_equal "Truth and Reconciliation Day", Date.civil(2023,9,30).holidays(:ca_bank_holidays)[0][:name]
 
-# Truth and Reconciliation Day in BC, MB, PEI, Nunavut, NWT, Yukon, Federal
+# Truth and Reconciliation Day in BC, MB, PE, NU, NT, YK, YT, Federal
 [
   Date.civil(2023,9,30),
   Date.civil(2024,9,30),
   Date.civil(2025,9,30),
   Date.civil(2026,9,30)
 ].each do |date|
-  %i[ca_bc ca_mb ca_pe ca_nu ca_nt ca_yt ca_bank_holidays].each do |region|
+  %i[ca_bc ca_mb ca_pe ca_nu ca_nt ca_yk ca_yt ca_bank_holidays].each do |region|
     assert_equal 'Truth and Reconciliation Day', Holidays.on(date, region)[0][:name]
   end
 end
