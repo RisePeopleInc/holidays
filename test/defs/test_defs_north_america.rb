@@ -219,12 +219,19 @@ end
   assert_equal 'Islander Day', Holidays.on(date, :ca_pe)[0][:name]
 end
 
-# National Aboriginal Day in NT
+# National Indigenous Peoples Day in NT, YK, YT (fixed date June 21,
+# observed on the following Monday when June 21 is a Sunday)
 [
   Date.civil(2022,6,21),
-  Date.civil(2023,6,21)
+  Date.civil(2023,6,21),
+  Date.civil(2024,6,21),
+  Date.civil(2025,6,21),
+  Date.civil(2026,6,22), # June 21, 2026 is a Sunday -> observed Mon June 22
+  Date.civil(2027,6,21)
 ].each do |date|
-  assert_equal 'National Aboriginal Day', Holidays.on(date, :ca_nt)[0][:name]
+  %i[ca_nt ca_yk ca_yt].each do |region|
+    assert_equal 'National Indigenous Peoples Day', Holidays.on(date, region, :observed)[0][:name]
+  end
 end
 
 # Fête Nationale in QC
