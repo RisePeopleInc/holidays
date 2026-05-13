@@ -249,6 +249,17 @@ end
   assert_equal 'Discovery Day', Holidays.on(date, [:ca_yk, :ca_yt])[0][:name]
 end
 
+# Discovery Day (YT) must NOT produce a spurious "Sub" / observed entry on the
+# Tuesday following the 3rd Monday in August (TO-693 regression guard).
+[
+  Date.civil(2024, 8, 20),
+  Date.civil(2025, 8, 19),
+  Date.civil(2026, 8, 18)
+].each do |date|
+  assert_equal [], Holidays.on(date, [:ca_yk, :ca_yt])
+  assert_equal [], Holidays.on(date, [:ca_yk, :ca_yt], :observed)
+end
+
 # Victoria Day in all Canadian provinces
 # except (QC)
 %i[
@@ -325,19 +336,16 @@ end
 assert_equal "Truth and Reconciliation Day", Date.civil(2023,9,29).holidays(:ca_bank_holidays, :observed)[0][:name]
 assert_equal "Truth and Reconciliation Day", Date.civil(2023,9,30).holidays(:ca_bank_holidays)[0][:name]
 
-# Truth and Reconciliation Day in BC, MB, PEI, Nunavut, NWT, Yukon
+# Truth and Reconciliation Day in BC, MB, PEI, Nunavut, NWT, Yukon, Federal
 [
   Date.civil(2023,9,30),
   Date.civil(2024,9,30),
   Date.civil(2025,9,30),
   Date.civil(2026,9,30)
 ].each do |date|
-  assert_equal 'Truth and Reconciliation Day', Holidays.on(date, :ca_bc)[0][:name]
-  assert_equal 'Truth and Reconciliation Day', Holidays.on(date, :ca_mb)[0][:name]
-  assert_equal 'Truth and Reconciliation Day', Holidays.on(date, :ca_pe)[0][:name]
-  assert_equal 'Truth and Reconciliation Day', Holidays.on(date, :ca_nu)[0][:name]
-  assert_equal 'Truth and Reconciliation Day', Holidays.on(date, :ca_nt)[0][:name]
-  assert_equal 'Truth and Reconciliation Day', Holidays.on(date, :ca_yt)[0][:name]
+  %i[ca_bc ca_mb ca_pe ca_nu ca_nt ca_yt ca_bank_holidays].each do |region|
+    assert_equal 'Truth and Reconciliation Day', Holidays.on(date, region)[0][:name]
+  end
 end
 
 
